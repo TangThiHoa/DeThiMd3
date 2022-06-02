@@ -24,7 +24,18 @@ public class ProductServiceImpl implements ProductService{
     }
     @Override
     public void add(Product product) {
-
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("insert into product(id,name,price,color,description,category) values (?, ?,?,?,?,?)");) {
+            preparedStatement.setInt(1, product.getId());
+            preparedStatement.setString(2, product.getName());
+            preparedStatement.setInt(3, product.getPrice());
+            preparedStatement.setString(4, product.getColor());
+            preparedStatement.setString(5, product.getDescription());
+            preparedStatement.setInt(6, product.getCategory().getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
     }
 
     @Override

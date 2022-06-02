@@ -24,14 +24,14 @@ public class CategoryImpl implements CategoryService{
 
     @Override
     public void add(Category category) {
-//        try (Connection connection = getConnection();
-//             PreparedStatement preparedStatement = connection.prepareStatement("insert into category(id,name) values (?, ?)");) {
-//            preparedStatement.setString(1, category.getId());
-//            preparedStatement.setInt(2, category.getName());
-//            preparedStatement.executeUpdate();
-//        } catch (SQLException e) {
-//            System.out.println(e);
-//        }
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("insert into category(id,name) values (?, ?)");) {
+            preparedStatement.setInt(1, category.getId());
+            preparedStatement.setString(2, category.getName());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
     }
 
 

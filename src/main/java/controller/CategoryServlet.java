@@ -67,11 +67,11 @@ public class CategoryServlet extends HttpServlet {
     }
 
     private void create(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//        int id = Integer.parseInt(request.getParameter("id"));
-//        String name = request.getParameter("name");
-//        categoryService.save(new Product(id, name));
-//        response.sendRedirect("/categores");
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        categoryService.add(new Category(id,name));
+        response.sendRedirect("/categores");
     }
     }
-//}
+
 
