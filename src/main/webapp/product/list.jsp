@@ -18,7 +18,8 @@
 
 
     <c:forEach items="${ds}" var="p">
-        <h2>${p.id},${p.name},
+        <h2>${p.id},${p.name},${p.price},${p.color},
+                ${p.description}
         </h2>
 
     </c:forEach>
