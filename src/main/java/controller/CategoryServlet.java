@@ -28,12 +28,24 @@ public class CategoryServlet extends HttpServlet {
             case "create":
                 showCreate(request, response);
                 break;
+            case "delete":
+                showDelete(request,response);
+                break;
             default:
                 showList(request, response);
         }
 
 
     }
+
+    private void showDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Category category = categoryService.findById(id);
+        request.setAttribute("xoa", category);
+        categoryService.delete(id);
+        response.sendRedirect("/categores");
+    }
+
 
     private void showCreate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("category/create.jsp").forward(request, response);

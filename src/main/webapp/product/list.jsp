@@ -21,7 +21,8 @@
 </form>
     <c:forEach items="${ds}" var="p">
         <h2>${p.id},${p.name},${p.price},${p.color},
-                ${p.description}
+                ${p.description} <a href="/products?act=edit&id=${p.id}">Edit</a>,
+            <a href="/products?act=deleteForm&id=${p.id}">Delete</a>
         </h2>
 
     </c:forEach>

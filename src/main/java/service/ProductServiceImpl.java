@@ -40,7 +40,24 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Product findById(int id) {
-        return null;
+        Product products = new Product();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from product where id = ?");) {
+            preparedStatement.setInt(1, id);
+            System.out.println(preparedStatement); //in ra câu truy vấn.
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                String name = rs.getString("name");
+                int price = rs.getInt("price");
+                String color= rs.getString("color");
+                String description = rs.getString("description");
+                int  categoryId = rs.getInt("id"); // lấy ra classId từ bảng student trong db
+                Category category = categoryService.findById(categoryId); // từ classId vừa lấy được, dùng ClassService để tìm đối tượng class tương ứng
+                products = new Product(id, name, price,color,description,category);
+            }
+        } catch (SQLException e) {
+        }
+        return products;
     }
 
     @Override
@@ -67,6 +84,13 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public boolean delete(int id) {
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("delete from product where id = ?");) {
+            preparedStatement.setInt(1, id);
+            System.out.println(preparedStatement); //in ra câu truy vấn.
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+        }
         return false;
     }
 

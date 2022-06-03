@@ -77,6 +77,13 @@ public class CategoryImpl implements CategoryService{
 
     @Override
     public boolean delete(int id) {
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("delete from category where id = ?");) {
+            preparedStatement.setInt(1, id);
+            System.out.println(preparedStatement); //in ra câu truy vấn.
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+        }
         return false;
     }
 

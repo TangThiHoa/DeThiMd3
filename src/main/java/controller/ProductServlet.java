@@ -13,12 +13,26 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
+import static java.nio.file.Files.delete;
 import static javafx.beans.property.adapter.JavaBeanDoublePropertyBuilder.create;
 
 @WebServlet(name = "ProductServlet", urlPatterns = "/products")
 public class ProductServlet extends HttpServlet {
     CategoryService categoryService = new CategoryImpl();
     ProductService productService = new ProductServiceImpl();
+
+    private void delete(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Product product = productService.findById(id);
+        if (product != null) {
+            productService.delete(id);
+            try {
+                response.sendRedirect("/products");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,14 +44,36 @@ public class ProductServlet extends HttpServlet {
             case "create":
                 showCreate(request, response);
                 break;
+            case "deleteForm":
+                showDelete(request, response);
+                break;
+            case "delete":
+                delete(request, response);
+                break;
             default:
                 showList(request, response);
-
-
         }
-
-
     }
+
+
+
+    private void showDelete(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Product product = productService.findById(id);
+        RequestDispatcher dispatcher = null;
+        if (product != null) {
+            request.setAttribute("st", product);
+            dispatcher = request.getRequestDispatcher("product/delete.jsp");
+        }
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private void showCreate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Category> categories = categoryService.findAll();
@@ -70,6 +106,7 @@ public class ProductServlet extends HttpServlet {
                 break;
         }
     }
+
 
     private void create(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int id = Integer.parseInt(request.getParameter("id"));
