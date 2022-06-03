@@ -11,6 +11,11 @@
     <title>Title</title>
 </head>
 <body>
+<form  action="/categores?act=edit&id=${sua.id}" method="post">
+    <input type="text" name="name" value="${sua.name}">
+    <button>Edit</button>
+
+</form>
 
 
 </body>

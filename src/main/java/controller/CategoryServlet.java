@@ -9,6 +9,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,11 +32,22 @@ public class CategoryServlet extends HttpServlet {
             case "delete":
                 showDelete(request,response);
                 break;
+            case "edit":
+                showEdit(request,response);
+                break;
             default:
+
                 showList(request, response);
         }
 
 
+    }
+
+    private void showEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Category category = categoryService.findById(id);
+        request.setAttribute("sua", category);
+        request.getRequestDispatcher("/category/edit.jsp").forward(request, response);
     }
 
     private void showDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -75,7 +87,22 @@ public class CategoryServlet extends HttpServlet {
             case "create":
                create(request, response);
                 break;
+            case "edit":
+                try {
+                    edit(request,response);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                break;
         }
+    }
+
+    private void edit(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        Category category1 = new Category(id, name);
+        categoryService.update(category1);
+        response.sendRedirect("/categores");
     }
 
     private void create(HttpServletRequest request, HttpServletResponse response) throws IOException {

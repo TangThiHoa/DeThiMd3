@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53373414-6eff-47ed-a289-18e6b780ffe3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/product/edit.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.bin" afterDir="false" />
@@ -13,12 +12,13 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/controller/ProductServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/controller/ProductServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/controller/CategoryServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/controller/CategoryServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/service/CategoryImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/service/CategoryImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/libs/DethiMD32-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/DethiMD32-1.0-SNAPSHOT.war" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ProductServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ProductServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/GeneralService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/GeneralService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/ProductServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/CategoryServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/CategoryServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/CategoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/CategoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/category/edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/category/edit.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,6 +88,7 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../casestudy" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -192,7 +193,7 @@
       <workItem from="1654128491376" duration="1585000" />
       <workItem from="1654185453764" duration="12566000" />
       <workItem from="1654212835501" duration="11608000" />
-      <workItem from="1654230694716" duration="3217000" />
+      <workItem from="1654230694716" duration="5563000" />
     </task>
     <servers />
   </component>

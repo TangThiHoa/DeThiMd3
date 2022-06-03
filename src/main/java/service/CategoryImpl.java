@@ -88,8 +88,17 @@ public class CategoryImpl implements CategoryService{
     }
 
     @Override
-    public boolean update(Category category) {
-        return false;
+    public boolean update(Category category) throws SQLException {
+        boolean a = false;
+        try (
+                Connection connection = getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement("update category set name =?  where id=?");) {
+            preparedStatement.setString(1, category.getName());
+            preparedStatement.setInt(2,category.getId());
+            a = preparedStatement.executeUpdate() > 0;
+
+        }
+        return a;
     }
 
     @Override
