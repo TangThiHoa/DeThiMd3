@@ -95,9 +95,23 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public boolean update(Product product) {
-        return false;
-    }
+    public boolean update(Product product) throws SQLException {
+        boolean a = false;
+        try (
+                Connection connection = getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement("update product set name =? ,price=?,color =?,description=?,category=? where id=?");) {
+            preparedStatement.setString(1, product.getName());
+            preparedStatement.setInt(2, product.getPrice());
+            preparedStatement.setString(3,product.getColor());
+            preparedStatement.setString(4,product.getDescription());
+            preparedStatement.setInt(5,product.getCategory().getId());
+            preparedStatement.setInt(6,product.getId());
+
+            a = preparedStatement.executeUpdate() > 0;
+
+        }
+        return a;
+}
 
     @Override
     public List<Product> findByName(String name) {

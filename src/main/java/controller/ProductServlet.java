@@ -11,10 +11,8 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
-
-import static java.nio.file.Files.delete;
-import static javafx.beans.property.adapter.JavaBeanDoublePropertyBuilder.create;
 
 @WebServlet(name = "ProductServlet", urlPatterns = "/products")
 public class ProductServlet extends HttpServlet {
@@ -50,11 +48,22 @@ public class ProductServlet extends HttpServlet {
             case "delete":
                 delete(request, response);
                 break;
+            case "edit":
+                ShowEdit(request, response);
+                break;
             default:
                 showList(request, response);
         }
     }
 
+    private void ShowEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        List<Category> categories = categoryService.findAll();
+        request.setAttribute("ds", categories);
+        Product product = productService.findById(id);
+        request.setAttribute("sua", product);
+        request.getRequestDispatcher("product/edit.jsp").forward(request, response);
+    }
 
 
     private void showDelete(HttpServletRequest request, HttpServletResponse response) {
@@ -104,8 +113,29 @@ public class ProductServlet extends HttpServlet {
             case "create":
                 create(request, response);
                 break;
+            case "edit":
+                try {
+                    edit(request, response);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                break;
         }
     }
+
+    private void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        int price = Integer.parseInt(request.getParameter("price"));
+        String color = request.getParameter("color");
+        String description = request.getParameter("description");
+        int categoryId = Integer.parseInt(request.getParameter("category"));
+        Category category = categoryService.findById(categoryId);
+        Product product = new Product(id, name, price, color, description, category);
+        productService.update(product);
+        response.sendRedirect("/products");
+    }
+
 
 
     private void create(HttpServletRequest request, HttpServletResponse response) throws IOException {

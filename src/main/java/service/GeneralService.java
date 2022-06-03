@@ -1,5 +1,6 @@
 package service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface GeneralService <T>{
@@ -11,7 +12,7 @@ public interface GeneralService <T>{
 
     public boolean delete(int id);
 
-    public boolean update(T t);
+    public boolean update(T t) throws SQLException;
 
     List<T> findByName(String name);
 }
