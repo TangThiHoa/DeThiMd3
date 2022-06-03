@@ -77,8 +77,8 @@ public class ProductServlet extends HttpServlet {
         int price = Integer.parseInt(request.getParameter("price"));
         String color = request.getParameter("color");
         String description = request.getParameter("description");
-        int category = Integer.parseInt(request.getParameter("category"));
-        Category category1 = categoryService.findById(category);
+        int categoryId = Integer.parseInt(request.getParameter("category"));
+        Category category = categoryService.findById(categoryId);
         Product product = new Product(id, name, price, color, description, category);
         productService.add(product);
         response.sendRedirect("/products");

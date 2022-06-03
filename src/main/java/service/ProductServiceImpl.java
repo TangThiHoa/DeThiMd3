@@ -25,7 +25,7 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public void add(Product product) {
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("insert into product(id,name,price,color,description,category) values (?, ?,?,?,?,?)");) {
+             PreparedStatement preparedStatement = connection.prepareStatement("insert into product(id,name,price,color,description,category) values (?,?,?,?,?,?)");) {
             preparedStatement.setInt(1, product.getId());
             preparedStatement.setString(2, product.getName());
             preparedStatement.setInt(3, product.getPrice());
@@ -46,8 +46,6 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public List<Product> findAll() {
         List<Product> products = new ArrayList<>();
-
-
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("select * from product");) {
             System.out.println(preparedStatement); //in ra câu truy vấn.

@@ -12,17 +12,19 @@
     <title>Title</title>
 </head>
 <body>
+<a href="/products?act=create">Create</a>
+
 <form action="/products">
     <input type="text" name="name">
     <button>Click</button>
 
-
+</form>
     <c:forEach items="${ds}" var="p">
         <h2>${p.id},${p.name},${p.price},${p.color},
                 ${p.description}
         </h2>
 
     </c:forEach>
-</form>
+
 </body>
 </html>
